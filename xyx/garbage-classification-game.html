@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垃圾分类小游戏</title>
+    <link href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f7f9fa 0%, #edf5f0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-top: 0;
+        }
+
+        /* 顶部信息栏 */
+        .top-bar {
+            height: 36px;
+            background: linear-gradient(90deg, #0d4722 0%, #165c2e 50%, #0d4722 100%);
+            color: #fff;
+            font-size: 15px;
+            line-height: 36px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(13, 71, 34, 0.15);
+        }
+
+        .top-bar .wrapper {
+            text-align: center;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            animation: shimmer 3.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* 游戏容器 */
+        .game-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+            min-height: 100vh;
+        }
+
+        /* 头部信息栏 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: linear-gradient(145deg, #ffffff 0%, #f9fbf9 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(22, 92, 46, 0.1);
+            box-shadow: 0 4px 16px rgba(22, 92, 46, 0.08);
+        }
+
+        .timer, .score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0d4722;
+        }
+
+        .timer-icon, .score-icon {
+            font-size: 1.6rem;
+        }
+
+        .timer-value {
+            color: #165c2e;
+            min-width: 60px;
+            font-weight: 800;
+        }
+
+        .timer-value.warning {
+            color: #f59e0b;
+            animation: pulse 0.5s infinite;
+        }
+
+        .timer-value.danger {
+            color: #ef4444;
+            animation: pulse 0.3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .score-value {
+            color: #165c2e;
+            min-width: 60px;
+            font-weight: 800;
+        }
+
+        .progress-container {
+            flex: 1;
+            margin: 0 30px;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: rgba(22, 92, 46, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #165c2e, #4caf50, #8bc34a);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* 游戏区域 */
+        .game-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* 垃圾展示区 */
+        .garbage-display {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ffffff 0%, #f5f9f6 100%);
+            border-radius: 24px;
+            border: 2px dashed rgba(22, 92, 46, 0.2);
+            box-shadow: 0 8px 24px rgba(22, 92, 46, 0.1);
+        }
+
+        .garbage-item {
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(145deg, #ffffff 0%, #f9fbf9 100%);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 24px rgba(22, 92, 46, 0.15);
+            user-select: none;
+            border: 1px solid rgba(22, 92, 46, 0.1);
+        }
+
+        .garbage-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(22, 92, 46, 0.2);
+        }
+
+        .garbage-item:active {
+            cursor: grabbing;
+        }
+
+        .garbage-item.dragging {
+            opacity: 0.8;
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .garbage-icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .garbage-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0d4722;
+            text-align: center;
+        }
+
+        /* 提示文字 */
+        .hint-text {
+            color: #555;
+            font-size: 1.1rem;
+            text-align: center;
+            animation: bounce 2s infinite;
+            font-weight: 500;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 垃圾桶区域 */
+        .bins-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .bin {
+            background: linear-gradient(145deg, #ffffff 0%, #f9fbf9 100%);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(22, 92, 46, 0.08);
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(22, 92, 46, 0.08);
+        }
+
+        .bin:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(22, 92, 46, 0.15);
+            border-color: rgba(22, 92, 46, 0.2);
+        }
+
+        .bin.drag-over {
+            transform: scale(1.05);
+            border-color: #165c2e;
+            background: linear-gradient(145deg, #e8f5e9 0%, #c8e6c9 100%);
+            box-shadow: 0 8px 24px rgba(22, 92, 46, 0.25);
+        }
+
+        .bin-icon {
+            width: 80px;
+            height: 100px;
+            border-radius: 10px 10px 15px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .bin-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .bin.recyclable .bin-icon {
+            background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+        }
+
+        .bin.hazardous .bin-icon {
+            background: linear-gradient(180deg, #ef4444, #b91c1c);
+        }
+
+        .bin.kitchen .bin-icon {
+            background: linear-gradient(180deg, #22c55e, #15803d);
+        }
+
+        .bin.other .bin-icon {
+            background: linear-gradient(180deg, #6b7280, #374151);
+        }
+
+        .bin-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0d4722;
+        }
+
+        .bin-description {
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* 反馈动画 */
+        .feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            z-index: 100;
+            animation: feedbackPop 0.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes feedbackPop {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .feedback.correct {
+            color: #22c55e;
+        }
+
+        .feedback.wrong {
+            color: #ef4444;
+        }
+
+        /* 结果页面 */
+        .result-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            background: linear-gradient(145deg, #ffffff 0%, #f9fbf9 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(22, 92, 46, 0.1);
+            box-shadow: 0 8px 32px rgba(22, 92, 46, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .result-container.show {
+            display: flex;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0d4722;
+            text-align: center;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #165c2e, #4caf50, #8bc34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(145deg, #f5f9f6 0%, #e8f5e9 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(22, 92, 46, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0d4722;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .review-section {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .review-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0d4722;
+            margin-bottom: 15px;
+        }
+
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .review-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: linear-gradient(145deg, #f5f9f6 0%, #e8f5e9 100%);
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .review-item.correct {
+            border-color: #22c55e;
+        }
+
+        .review-item.wrong {
+            border-color: #ef4444;
+        }
+
+        .review-icon {
+            font-size: 2rem;
+        }
+
+        .review-info {
+            flex: 1;
+        }
+
+        .review-name {
+            font-weight: 600;
+            color: #0d4722;
+        }
+
+        .review-category {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #165c2e 0%, #1e733a 50%, #165c2e 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(22, 92, 46, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(22, 92, 46, 0.4);
+        }
+
+        /* 开始页面 */
+        .start-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .start-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0d4722, #165c2e, #1e733a, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .start-subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 500px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .start-bins {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .start-bin {
+            width: 80px;
+            height: 100px;
+            border-radius: 10px 10px 15px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            position: relative;
+            animation: binBounce 2s ease-in-out infinite;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .start-bin:nth-child(1) { animation-delay: 0s; }
+        .start-bin:nth-child(2) { animation-delay: 0.2s; }
+        .start-bin:nth-child(3) { animation-delay: 0.4s; }
+        .start-bin:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes binBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .start-bin::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .difficulty-select {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .difficulty-btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid rgba(22, 92, 46, 0.2);
+            background: linear-gradient(145deg, #ffffff 0%, #f5f9f6 100%);
+            color: #0d4722;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .difficulty-btn:hover {
+            background: linear-gradient(145deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-color: rgba(22, 92, 46, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .difficulty-btn.selected {
+            background: linear-gradient(135deg, #165c2e 0%, #1e733a 100%);
+            border-color: #165c2e;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(22, 92, 46, 0.3);
+        }
+
+        /* 隐藏游戏区域 */
+        .hidden {
+            display: none !important;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .progress-container {
+                margin: 10px 0;
+                width: 100%;
+            }
+
+            .bins-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .bin {
+                padding: 15px;
+            }
+
+            .bin-icon {
+                width: 60px;
+                height: 75px;
+                font-size: 2rem;
+            }
+
+            .bin-name {
+                font-size: 1rem;
+            }
+
+            .bin-description {
+                font-size: 0.75rem;
+            }
+
+            .start-title {
+                font-size: 2.5rem;
+            }
+
+            .result-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(22, 92, 46, 0.05);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(22, 92, 46, 0.2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(22, 92, 46, 0.4);
+        }
+
+        /* 底部 */
+        .footer {
+            background: linear-gradient(180deg, #0d4722 0%, #0a381a 100%);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #165c2e, #8bc34a, #4caf50, #165c2e);
+            background-size: 200% auto;
+            animation: footerShine 3s linear infinite;
+        }
+
+        @keyframes footerShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* 返回首页按钮 */
+        .back-home-btn {
+            position: fixed;
+            top: 50px;
+            left: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #165c2e 0%, #0d4722 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            z-index: 9999;
+            box-shadow: 0 4px 16px rgba(22, 92, 46, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .back-home-btn:hover {
+            background: linear-gradient(135deg, #1e733a 0%, #165c2e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 92, 46, 0.45);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 响应式 - 移动端 */
+        @media (max-width: 768px) {
+            .back-home-btn {
+                top: 42px;
+                left: 12px;
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-home-btn">← 返回首页</a>
+    <!-- 顶部信息栏 -->
+    <div class="top-bar">
+        <div class="wrapper">
+            <span>聚焦生态环境 · 传播绿色理念</span>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <!-- 开始页面 -->
+        <div class="start-container" id="startScreen">
+            <h1 class="start-title">垃圾分类小游戏</h1>
+            <p class="start-subtitle">
+                拖拽垃圾到正确的垃圾桶中，测试你的垃圾分类知识！
+                <br>看看你能得多少分？
+            </p>
+            <div class="start-bins">
+                <div class="start-bin" style="background: linear-gradient(180deg, #3b82f6, #1d4ed8);">♻️</div>
+                <div class="start-bin" style="background: linear-gradient(180deg, #ef4444, #b91c1c);">☣️</div>
+                <div class="start-bin" style="background: linear-gradient(180deg, #22c55e, #15803d);">🥬</div>
+                <div class="start-bin" style="background: linear-gradient(180deg, #6b7280, #374151);">🗑️</div>
+            </div>
+            <div class="difficulty-select">
+                <button class="difficulty-btn selected" data-time="60">简单 (60秒)</button>
+                <button class="difficulty-btn" data-time="45">普通 (45秒)</button>
+                <button class="difficulty-btn" data-time="30">困难 (30秒)</button>
+            </div>
+            <button class="btn btn-primary" id="startBtn" style="margin-top: 20px;">
+                开始游戏
+            </button>
+        </div>
+
+        <!-- 游戏界面 -->
+        <div class="hidden" id="gameScreen">
+            <div class="header">
+                <div class="timer">
+                    <span class="timer-icon">⏱️</span>
+                    <span class="timer-value" id="timer">60</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">第 1 题</div>
+                </div>
+                <div class="score">
+                    <span class="score-icon">⭐</span>
+                    <span class="score-value" id="score">0</span>
+                </div>
+            </div>
+
+            <div class="game-area">
+                <div class="garbage-display">
+                    <div class="garbage-item" id="garbageItem" draggable="true">
+                        <div class="garbage-icon" id="garbageIcon">🍾</div>
+                        <div class="garbage-name" id="garbageName">塑料瓶</div>
+                    </div>
+                </div>
+
+                <p class="hint-text">拖拽垃圾到下方的垃圾桶中 🎯</p>
+
+                <div class="bins-container">
+                    <div class="bin recyclable" data-category="recyclable">
+                        <div class="bin-icon">♻️</div>
+                        <div class="bin-name">可回收物</div>
+                        <div class="bin-description">纸张、塑料、金属、玻璃等</div>
+                    </div>
+                    <div class="bin hazardous" data-category="hazardous">
+                        <div class="bin-icon">☣️</div>
+                        <div class="bin-name">有害垃圾</div>
+                        <div class="bin-description">电池、灯泡、药品等</div>
+                    </div>
+                    <div class="bin kitchen" data-category="kitchen">
+                        <div class="bin-icon">🥬</div>
+                        <div class="bin-name">厨余垃圾</div>
+                        <div class="bin-description">剩菜剩饭、果皮等</div>
+                    </div>
+                    <div class="bin other" data-category="other">
+                        <div class="bin-icon">🗑️</div>
+                        <div class="bin-name">其他垃圾</div>
+                        <div class="bin-description">烟蒂、陶瓷、卫生纸等</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果页面 -->
+        <div class="result-container" id="resultScreen">
+            <h2 class="result-title">🎉 游戏结束！</h2>
+            <div class="result-score" id="finalScore">0</div>
+            <div class="result-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="correctCount">0</div>
+                    <div class="stat-label">正确</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="wrongCount">0</div>
+                    <div class="stat-label">错误</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="accuracy">0%</div>
+                    <div class="stat-label">正确率</div>
+                </div>
+            </div>
+            <div class="review-section">
+                <h3 class="review-title">📋 答题回顾</h3>
+                <div class="review-list" id="reviewList"></div>
+            </div>
+            <button class="btn btn-primary" id="restartBtn">再玩一次</button>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="wrapper">
+            <p>廖利斌-2504020228</p>
+        </div>
+    </footer>
+
+    <script>
+        // 垃圾数据
+        const garbageData = [
+            // 可回收物
+            { id: 1, name: '塑料瓶', icon: '🍾', category: 'recyclable', description: '塑料饮料瓶可以回收再利用' },
+            { id: 2, name: '废纸', icon: '📄', category: 'recyclable', description: '纸张可以回收制成新纸' },
+            { id: 3, name: '易拉罐', icon: '🥫', category: 'recyclable', description: '铝罐可以无限次回收' },
+            { id: 4, name: '玻璃瓶', icon: '🫙', category: 'recyclable', description: '玻璃可以回收再熔炼' },
+            { id: 5, name: '旧衣服', icon: '👕', category: 'recyclable', description: '旧衣物可以捐赠或回收' },
+            { id: 6, name: '纸箱', icon: '📦', category: 'recyclable', description: '纸箱可以回收再利用' },
+            { id: 7, name: '金属罐', icon: '🥫', category: 'recyclable', description: '金属可以回收再利用' },
+            { id: 8, name: '旧书', icon: '📚', category: 'recyclable', description: '旧书可以回收或捐赠' },
+            { id: 9, name: '塑料袋', icon: '🛍️', category: 'recyclable', description: '干净塑料袋可以回收' },
+            { id: 10, name: '牛奶盒', icon: '🥛', category: 'recyclable', description: '牛奶盒可以回收' },
+            { id: 41, name: '报纸', icon: '📰', category: 'recyclable', description: '报纸可以回收再利用' },
+            { id: 42, name: '书本', icon: '📖', category: 'recyclable', description: '书本可以捐赠或回收' },
+            { id: 43, name: '金属勺', icon: '🥄', category: 'recyclable', description: '金属餐具可以回收' },
+            { id: 44, name: '易拉罐', icon: '🥤', category: 'recyclable', description: '饮料罐可以回收利用' },
+            { id: 45, name: '快递盒', icon: '📦', category: 'recyclable', description: '快递纸箱属于可回收物' },
+            { id: 71, name: '易拉罐拉环', icon: '🥫', category: 'recyclable', description: '金属拉环可以回收' },
+            { id: 72, name: '玻璃瓶', icon: '🍾', category: 'recyclable', description: '玻璃制品可以回收' },
+            { id: 73, name: '塑料玩具', icon: '🧸', category: 'recyclable', description: '塑料玩具可以回收利用' },
+            { id: 74, name: '旧鞋子', icon: '👟', category: 'recyclable', description: '旧鞋可以回收或捐赠' },
+            { id: 75, name: '杂志', icon: '📖', category: 'recyclable', description: '杂志可以回收再利用' },
+
+            // 有害垃圾
+            { id: 11, name: '废电池', icon: '🔋', category: 'hazardous', description: '电池含有有害物质' },
+            { id: 12, name: '过期药品', icon: '💊', category: 'hazardous', description: '过期药品需要特殊处理' },
+            { id: 13, name: '废灯泡', icon: '💡', category: 'hazardous', description: '灯泡含有汞等有害物质' },
+            { id: 14, name: '油漆桶', icon: '🪣', category: 'hazardous', description: '油漆含有有害化学物质' },
+            { id: 15, name: '杀虫剂', icon: '🧴', category: 'hazardous', description: '杀虫剂含有有毒成分' },
+            { id: 16, name: '水银温度计', icon: '🌡️', category: 'hazardous', description: '水银有毒需要特殊处理' },
+            { id: 17, name: '指甲油', icon: '💅', category: 'hazardous', description: '指甲油含有有害化学物质' },
+            { id: 18, name: '消毒剂', icon: '🧪', category: 'hazardous', description: '消毒剂含有有害成分' },
+            { id: 19, name: '农药瓶', icon: '🧴', category: 'hazardous', description: '农药瓶含有有毒残留' },
+            { id: 20, name: '墨盒', icon: '🖨️', category: 'hazardous', description: '墨盒含有有害化学物质' },
+            { id: 46, name: '废手机', icon: '📱', category: 'hazardous', description: '废弃手机含重金属需特殊处理' },
+            { id: 47, name: '废遥控器', icon: '📺', category: 'hazardous', description: '遥控器含电池需单独处理' },
+            { id: 48, name: '废打火机', icon: '🔥', category: 'hazardous', description: '打火机含可燃液体' },
+            { id: 49, name: '废温度计', icon: '🌡️', category: 'hazardous', description: '温度计可能含汞' },
+            { id: 50, name: '废荧光灯管', icon: '💡', category: 'hazardous', description: '荧光灯管含有害物质' },
+            { id: 76, name: '废充电宝', icon: '🔋', category: 'hazardous', description: '充电宝含锂电池需特殊处理' },
+            { id: 77, name: '过期化妆品', icon: '💄', category: 'hazardous', description: '过期化妆品含有害成分' },
+            { id: 78, name: '废指甲油', icon: '💅', category: 'hazardous', description: '指甲油含有有害化学物质' },
+            { id: 79, name: '废蓄电池', icon: '⚡', category: 'hazardous', description: '蓄电池含有重金属' },
+            { id: 80, name: '废胶卷', icon: '🎞️', category: 'hazardous', description: '胶卷含有化学物质' },
+
+            // 厨余垃圾
+            { id: 21, name: '剩饭剩菜', icon: '🍚', category: 'kitchen', description: '剩饭可以堆肥处理' },
+            { id: 22, name: '果皮', icon: '🍌', category: 'kitchen', description: '果皮可以堆肥' },
+            { id: 23, name: '茶叶渣', icon: '🍵', category: 'kitchen', description: '茶叶渣可以堆肥' },
+            { id: 24, name: '蛋壳', icon: '🥚', category: 'kitchen', description: '蛋壳可以堆肥' },
+            { id: 25, name: '骨头', icon: '🦴', category: 'kitchen', description: '小骨头属于厨余垃圾' },
+            { id: 26, name: '菜叶', icon: '🥬', category: 'kitchen', description: '菜叶可以堆肥' },
+            { id: 27, name: '瓜皮', icon: '🍉', category: 'kitchen', description: '瓜皮可以堆肥' },
+            { id: 28, name: '咖啡渣', icon: '☕', category: 'kitchen', description: '咖啡渣可以堆肥' },
+            { id: 29, name: '过期面包', icon: '🍞', category: 'kitchen', description: '过期面包可以堆肥' },
+            { id: 30, name: '鱼骨', icon: '🐟', category: 'kitchen', description: '鱼骨属于厨余垃圾' },
+            { id: 51, name: '苹果核', icon: '🍎', category: 'kitchen', description: '苹果核可以堆肥' },
+            { id: 52, name: '鸡蛋壳', icon: '🥚', category: 'kitchen', description: '鸡蛋壳属于厨余垃圾' },
+            { id: 53, name: '玉米棒', icon: '🌽', category: 'kitchen', description: '玉米棒可以堆肥处理' },
+            { id: 54, name: '剩饭', icon: '🍱', category: 'kitchen', description: '剩饭属于厨余垃圾' },
+            { id: 55, name: '菜叶根', icon: '🥬', category: 'kitchen', description: '蔬菜残叶可以堆肥' },
+            { id: 56, name: '橘子皮', icon: '🍊', category: 'kitchen', description: '橘子皮可以堆肥' },
+            { id: 57, name: '西瓜皮', icon: '🍉', category: 'kitchen', description: '西瓜皮属于厨余垃圾' },
+            { id: 58, name: '菜叶', icon: '🥦', category: 'kitchen', description: '蔬菜残叶可以堆肥' },
+            { id: 59, name: '剩饭汤', icon: '🥣', category: 'kitchen', description: '剩汤属于厨余垃圾' },
+            { id: 60, name: '茶叶', icon: '🍵', category: 'kitchen', description: '茶渣可以堆肥处理' },
+            { id: 81, name: '草莓叶', icon: '🍓', category: 'kitchen', description: '草莓叶属于厨余垃圾' },
+            { id: 82, name: '香蕉皮', icon: '🍌', category: 'kitchen', description: '香蕉皮可以堆肥' },
+            { id: 83, name: '玉米叶', icon: '🌽', category: 'kitchen', description: '玉米叶可以堆肥处理' },
+            { id: 84, name: '菠萝皮', icon: '🍍', category: 'kitchen', description: '菠萝皮属于厨余垃圾' },
+            { id: 85, name: '土豆皮', icon: '🥔', category: 'kitchen', description: '土豆皮可以堆肥' },
+            { id: 86, name: '茶叶蛋壳', icon: '🥚', category: 'kitchen', description: '蛋壳可以堆肥' },
+            { id: 87, name: '剩面条', icon: '🍜', category: 'kitchen', description: '剩面条属于厨余垃圾' },
+            { id: 88, name: '剩米饭', icon: '🍚', category: 'kitchen', description: '剩米饭可以堆肥' },
+            { id: 89, name: '果皮', icon: '🍊', category: 'kitchen', description: '果皮属于厨余垃圾' },
+            { id: 90, name: '豆腐', icon: '🧈', category: 'kitchen', description: '过期豆腐可以堆肥处理' },
+
+            // 其他垃圾
+            { id: 31, name: '烟蒂', icon: '🚬', category: 'other', description: '烟蒂难以回收利用' },
+            { id: 32, name: '陶瓷碎片', icon: '🏺', category: 'other', description: '陶瓷难以回收' },
+            { id: 33, name: '卫生纸', icon: '🧻', category: 'other', description: '卫生纸不可回收' },
+            { id: 34, name: '一次性餐具', icon: '🥢', category: 'other', description: '一次性餐具难以回收' },
+            { id: 35, name: '尘土', icon: '🧹', category: 'other', description: '尘土属于其他垃圾' },
+            { id: 36, name: '头发', icon: '💇', category: 'other', description: '头发难以回收利用' },
+            { id: 37, name: '破旧毛巾', icon: '🧽', category: 'other', description: '破旧毛巾难以回收' },
+            { id: 38, name: '猫砂', icon: '🐱', category: 'other', description: '猫砂属于其他垃圾' },
+            { id: 39, name: '创可贴', icon: '🩹', category: 'other', description: '使用过的创可贴不可回收' },
+            { id: 40, name: '口香糖', icon: '🫧', category: 'other', description: '口香糖难以回收' },
+            { id: 61, name: '尿不湿', icon: '🧷', category: 'other', description: '尿不湿不可回收' },
+            { id: 62, name: '破旧陶瓷', icon: '🏺', category: 'other', description: '陶瓷属于其他垃圾' },
+            { id: 63, name: '一次性手套', icon: '🧤', category: 'other', description: '一次性手套不可回收' },
+            { id: 64, name: '旧牙刷', icon: '🪥', category: 'other', description: '旧牙刷难以回收' },
+            { id: 65, name: '尿片', icon: '🩲', category: 'other', description: '尿片属于其他垃圾' },
+            { id: 66, name: '旧毛巾', icon: '🧻', category: 'other', description: '破旧毛巾难以回收' },
+            { id: 67, name: '破损玻璃', icon: '🪟', category: 'other', description: '无法回收的破损玻璃' },
+            { id: 68, name: '旧筷子', icon: '🥢', category: 'other', description: '旧筷子难以回收利用' },
+            { id: 69, name: '宠物粪便', icon: '🐕', category: 'other', description: '宠物粪便属于其他垃圾' },
+            { id: 70, name: '旧口罩', icon: '😷', category: 'other', description: '使用过的口罩不可回收' },
+            { id: 91, name: '橡皮', icon: '✏️', category: 'other', description: '橡皮属于其他垃圾' },
+            { id: 92, name: '旧毛巾', icon: '🧽', category: 'other', description: '破旧毛巾难以回收' },
+            { id: 93, name: '一次性口罩', icon: '😷', category: 'other', description: '一次性口罩属于其他垃圾' },
+            { id: 94, name: '创可贴', icon: '🩹', category: 'other', description: '使用过的创可贴不可回收' },
+            { id: 95, name: '旧袜子', icon: '🧦', category: 'other', description: '破旧袜子难以回收' },
+            { id: 96, name: '烟头', icon: '🚬', category: 'other', description: '烟头不可回收利用' },
+            { id: 97, name: '牙签', icon: '🪥', category: 'other', description: '牙签属于其他垃圾' },
+            { id: 98, name: '旧鞋', icon: '👠', category: 'other', description: '破损鞋子难以回收' },
+            { id: 99, name: '旧手帕', icon: '🧻', category: 'other', description: '旧手帕难以回收' },
+            { id: 100, name: '干燥剂', icon: '🧂', category: 'other', description: '干燥剂不可回收' }
+        ];
+
+        // 分类信息
+        const categoryInfo = {
+            recyclable: { name: '可回收物', color: '#3b82f6' },
+            hazardous: { name: '有害垃圾', color: '#ef4444' },
+            kitchen: { name: '厨余垃圾', color: '#22c55e' },
+            other: { name: '其他垃圾', color: '#6b7280' }
+        };
+
+        // 游戏状态
+        let gameState = {
+            score: 0,
+            correctCount: 0,
+            wrongCount: 0,
+            totalQuestions: 0,
+            timeLeft: 60,
+            currentGarbage: null,
+            history: [],
+            usedGarbage: [],
+            gameTimer: null,
+            totalTime: 60
+        };
+
+        // DOM 元素
+        const startScreen = document.getElementById('startScreen');
+        const gameScreen = document.getElementById('gameScreen');
+        const resultScreen = document.getElementById('resultScreen');
+        const startBtn = document.getElementById('startBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const timerEl = document.getElementById('timer');
+        const scoreEl = document.getElementById('score');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const garbageItem = document.getElementById('garbageItem');
+        const garbageIcon = document.getElementById('garbageIcon');
+        const garbageName = document.getElementById('garbageName');
+        const bins = document.querySelectorAll('.bin');
+        const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+
+        // 难度选择
+        difficultyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                difficultyBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                gameState.totalTime = parseInt(btn.dataset.time);
+            });
+        });
+
+        // 开始游戏
+        function startGame() {
+            gameState = {
+                score: 0,
+                correctCount: 0,
+                wrongCount: 0,
+                totalQuestions: 0,
+                timeLeft: gameState.totalTime,
+                currentGarbage: null,
+                history: [],
+                usedGarbage: [],
+                gameTimer: null,
+                totalTime: gameState.totalTime
+            };
+
+            startScreen.classList.add('hidden');
+            resultScreen.classList.remove('show');
+            gameScreen.classList.remove('hidden');
+
+            updateUI();
+            nextGarbage();
+            startTimer();
+        }
+
+        // 开始计时器
+        function startTimer() {
+            gameState.gameTimer = setInterval(() => {
+                gameState.timeLeft--;
+                updateTimerDisplay();
+
+                if (gameState.timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        // 更新计时器显示
+        function updateTimerDisplay() {
+            timerEl.textContent = gameState.timeLeft;
+            timerEl.classList.remove('warning', 'danger');
+
+            if (gameState.timeLeft <= 10) {
+                timerEl.classList.add('danger');
+            } else if (gameState.timeLeft <= 20) {
+                timerEl.classList.add('warning');
+            }
+        }
+
+        // 获取下一个垃圾
+        function nextGarbage() {
+            const availableGarbage = garbageData.filter(g => !gameState.usedGarbage.includes(g.id));
+
+            if (availableGarbage.length === 0) {
+                gameState.usedGarbage = [];
+                return nextGarbage();
+            }
+
+            const randomIndex = Math.floor(Math.random() * availableGarbage.length);
+            gameState.currentGarbage = availableGarbage[randomIndex];
+            gameState.usedGarbage.push(gameState.currentGarbage.id);
+
+            garbageIcon.textContent = gameState.currentGarbage.icon;
+            garbageName.textContent = gameState.currentGarbage.name;
+
+            // 动画效果
+            garbageItem.style.animation = 'none';
+            garbageItem.offsetHeight;
+            garbageItem.style.animation = 'slideUp 0.3s ease-out';
+        }
+
+        // 更新UI
+        function updateUI() {
+            scoreEl.textContent = gameState.score;
+            progressText.textContent = `第 ${gameState.totalQuestions + 1} 题`;
+            progressFill.style.width = `${(gameState.totalQuestions / 20) * 100}%`;
+        }
+
+        // 显示反馈
+        function showFeedback(isCorrect) {
+            const feedback = document.createElement('div');
+            feedback.className = `feedback ${isCorrect ? 'correct' : 'wrong'}`;
+            feedback.textContent = isCorrect ? '✓' : '✗';
+            document.body.appendChild(feedback);
+
+            setTimeout(() => {
+                feedback.remove();
+            }, 500);
+        }
+
+        // 处理分类
+        function handleClassification(category) {
+            if (!gameState.currentGarbage) return;
+
+            const isCorrect = category === gameState.currentGarbage.category;
+
+            gameState.totalQuestions++;
+            gameState.history.push({
+                garbage: gameState.currentGarbage,
+                userChoice: category,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                gameState.score += 10;
+                gameState.correctCount++;
+                showFeedback(true);
+            } else {
+                gameState.wrongCount++;
+                showFeedback(false);
+            }
+
+            updateUI();
+            nextGarbage();
+        }
+
+        // 结束游戏
+        function endGame() {
+            clearInterval(gameState.gameTimer);
+            gameScreen.classList.add('hidden');
+            resultScreen.classList.add('show');
+
+            document.getElementById('finalScore').textContent = gameState.score;
+            document.getElementById('correctCount').textContent = gameState.correctCount;
+            document.getElementById('wrongCount').textContent = gameState.wrongCount;
+
+            const accuracy = gameState.totalQuestions > 0
+                ? Math.round((gameState.correctCount / gameState.totalQuestions) * 100)
+                : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+
+            // 生成回顾列表
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+
+            gameState.history.forEach(item => {
+                const reviewItem = document.createElement('div');
+                reviewItem.className = `review-item ${item.isCorrect ? 'correct' : 'wrong'}`;
+                reviewItem.innerHTML = `
+                    <span class="review-icon">${item.garbage.icon}</span>
+                    <div class="review-info">
+                        <div class="review-name">${item.garbage.name}</div>
+                        <div class="review-category">
+                            ${item.isCorrect
+                                ? '分类正确 ✓'
+                                : `正确分类: ${categoryInfo[item.garbage.category].name}`}
+                        </div>
+                    </div>
+                `;
+                reviewList.appendChild(reviewItem);
+            });
+        }
+
+        // 拖拽事件
+        garbageItem.addEventListener('dragstart', (e) => {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', 'garbage');
+        });
+
+        garbageItem.addEventListener('dragend', (e) => {
+            e.target.classList.remove('dragging');
+        });
+
+        bins.forEach(bin => {
+            bin.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                bin.classList.add('drag-over');
+            });
+
+            bin.addEventListener('dragleave', () => {
+                bin.classList.remove('drag-over');
+            });
+
+            bin.addEventListener('drop', (e) => {
+                e.preventDefault();
+                bin.classList.remove('drag-over');
+                const category = bin.dataset.category;
+                handleClassification(category);
+            });
+
+            // 点击事件（移动端支持）
+            bin.addEventListener('click', () => {
+                const category = bin.dataset.category;
+                handleClassification(category);
+            });
+        });
+
+        // 触摸事件支持
+        let touchStartX, touchStartY;
+        let isDragging = false;
+
+        garbageItem.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isDragging = true;
+            garbageItem.classList.add('dragging');
+        });
+
+        garbageItem.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            const touch = e.touches[0];
+            garbageItem.style.position = 'fixed';
+            garbageItem.style.left = (touch.clientX - 75) + 'px';
+            garbageItem.style.top = (touch.clientY - 75) + 'px';
+            garbageItem.style.zIndex = '1000';
+
+            // 检查是否在垃圾桶上
+            bins.forEach(bin => {
+                const rect = bin.getBoundingClientRect();
+                if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+                    touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                    bin.classList.add('drag-over');
+                } else {
+                    bin.classList.remove('drag-over');
+                }
+            });
+        });
+
+        garbageItem.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            garbageItem.style.position = '';
+            garbageItem.style.left = '';
+            garbageItem.style.top = '';
+            garbageItem.style.zIndex = '';
+            garbageItem.classList.remove('dragging');
+
+            const touch = e.changedTouches[0];
+
+            bins.forEach(bin => {
+                bin.classList.remove('drag-over');
+                const rect = bin.getBoundingClientRect();
+                if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+                    touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                    handleClassification(bin.dataset.category);
+                }
+            });
+        });
+
+        // 事件监听
+        startBtn.addEventListener('click', startGame);
+        restartBtn.addEventListener('click', () => {
+            resultScreen.classList.remove('show');
+            startScreen.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

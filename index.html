@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生态环境频道 - 共建人与自然生命共同体</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span class="bar-text">聚焦生态环境 · 传播绿色理念</span>
+        <span class="clock" id="mainClock">--:--:--</span>
+    </div>
+</div>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li class="active"><a href="index.html">首页</a></li>
+            <li class="dropdown">
+                <a href="./1zx/li.html">环保资讯</a>
+                <ul class="submenu">
+                    <li><a href="./1zx/1zcfg/ul.html">政策法规</a></li>
+                    <li><a href="./1zx/2hydt/ul.html">行业动态</a></li>
+                    <li><a href="./1zx/3hbxw/ul.html">环保新闻</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="./2kp/li.html">环保科普</a>
+                <ul class="submenu">
+                    <li><a href="./2kp/1stzs/ul.html">生态知识</a></li>
+                    <li><a href="./2kp/2dtsh/ul.html">污染防护</a></li>
+                    <li><a href="./2kp/3wrfz/ul.html">低碳生活</a></li>
+                    <li><a href="./2kp/4hjwq/ul.html">环境监控</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="./3stbh/li.html">生态保护</a>
+                <ul class="submenu">
+                    <li><a href="./3stbh/1zrbh/ul.html">自然保护</a></li>
+                    <li><a href="./3stbh/2dzwbh/ul.html">动植物保护</a></li>
+                    <li><a href="./3stbh/3hjxf/ul.html">生态修复</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="./4hd/li.html">绿色行动</a>
+                <ul class="submenu">
+                    <li><a href="./4hd/1lyjy/ul.html">绿色教育</a></li>
+                    <li><a href="./4hd/2zpzs/ul.html">志愿服务</a></li>
+                    <li><a href="./4hd/3zswd/ul.html">企业责任</a></li>
+                    <li><a href="./4hd/4zyxz/ul.html">公众参与</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="./5hbcg/li.html">环保成果</a>
+                <ul class="submenu">
+                    <li><a href="./5hbcg/1zlcg/ul.html">治理成效</a></li>
+                    <li><a href="./5hbcg/2yxal/ul.html">示范项目</a></li>
+                    <li><a href="./5hbcg/3lsry/ul.html">科技创新</a></li>
+                </ul>
+            </li>
+            <li><a href="./6gywm/li.html" target="_self">关于我们</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 多图轮播 banner -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/gwen-weustink-I3C1sSXj1i8-unsplash.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/hans-jurgen-mager-qQWV91TTBrE-unsplash.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/sutirta-budiman-Jgiv1rSIpVM-unsplash.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/tyke-jones-6W9H4xNq3hs-unsplash.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>尊重自然、顺应自然，保护自然</h2>
+        <p>推动绿色发展，促进人与自然和谐共生</p><br><br><br>
+        <p class="scroll-down">↓ 向下探索更多内容 ↓</p>
+    </div>
+</div>
+
+<!-- 核心内容区 -->
+<main class="main">
+    <div class="wrapper">
+        <section class="focus-box">
+            <div class="title">
+                <h3>重点关注</h3>
+            </div>
+            <div class="focus-content">
+                <p>深入打好污染防治攻坚战，持续改善生态环境质量，全面推进美丽中国建设，加快推动发展方式绿色低碳转型。</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- 视频轮播区（动态渲染，数据与视图分离，含错误处理与备用链接） -->
+<div class="carousel-container">
+    <!-- 视频选择列表 -->
+    <div class="video-selector">
+        <label for="videoSelect">📹 选择视频：</label>
+        <select id="videoSelect" onchange="changeVideo()"></select>
+        <span class="video-counter" id="videoCounter">1 / 7</span>
+    </div>
+
+    <!-- 动态视频容器：懒加载 + 错误兜底 -->
+    <div class="carousel-stage" id="carouselStage"></div>
+
+    <!-- 左右切换按钮 -->
+    <button class="carousel-btn prev-btn" onclick="prevSlide()" aria-label="上一个视频">‹</button>
+    <button class="carousel-btn next-btn" onclick="nextSlide()" aria-label="下一个视频">›</button>
+</div>
+
+<!-- 全国各省生态环境部门 下拉跳转菜单 -->
+<div class="province-box">
+    <div class="wrapper">
+        <label>省级生态环境部门：</label>
+        <select id="provinceSelect" onchange="goProvincePage()">
+            <option value="">请选择省份</option>
+            <option value="https://sthjj.beijing.gov.cn/">北京市生态环境局</option>
+            <option value="https://sthj.tj.gov.cn/">天津市生态环境局</option>
+            <option value="https://hbepb.hebei.gov.cn/">河北省生态环境厅</option>
+            <option value="https://sthjt.shanxi.gov.cn/">山西省生态环境厅</option>
+            <option value="https://sthjt.nmg.gov.cn/">内蒙古自治区生态环境厅</option>
+            <option value="https://sthj.ln.gov.cn/">辽宁省生态环境厅</option>
+            <option value="https://sthjt.jl.gov.cn/">吉林省生态环境厅</option>
+            <option value="https://sthj.hlj.gov.cn/">黑龙江省生态环境厅</option>
+            <option value="https://sthj.sh.gov.cn/">上海市生态环境局</option>
+            <option value="https://sthjt.jiangsu.gov.cn/">江苏省生态环境厅</option>
+            <option value="https://sthjt.zj.gov.cn/">浙江省生态环境厅</option>
+            <option value="https://sthjt.ah.gov.cn/">安徽省生态环境厅</option>
+            <option value="https://sthjt.fujian.gov.cn/">福建省生态环境厅</option>
+            <option value="https://sthjt.jiangxi.gov.cn/">江西省生态环境厅</option>
+            <option value="https://sthj.shandong.gov.cn/">山东省生态环境厅</option>
+            <option value="https://sthjt.henan.gov.cn/">河南省生态环境厅</option>
+            <option value="https://sthjt.hubei.gov.cn/">湖北省生态环境厅</option>
+            <option value="https://sthjt.hunan.gov.cn/">湖南省生态环境厅</option>
+            <option value="https://gdee.gd.gov.cn/">广东省生态环境厅</option>
+            <option value="https://sthjt.gxzf.gov.cn/">广西壮族自治区生态环境厅</option>
+            <option value="https://hnsthb.hainan.gov.cn/">海南省生态环境厅</option>
+            <option value="https://sthjj.cq.gov.cn/">重庆市生态环境局</option>
+            <option value="https://sthjt.sc.gov.cn/">四川省生态环境厅</option>
+            <option value="https://sthj.guizhou.gov.cn/">贵州省生态环境厅</option>
+            <option value="https://sthjt.yn.gov.cn/">云南省生态环境厅</option>
+            <option value="https://ee.xizang.gov.cn/">西藏自治区生态环境厅</option>
+            <option value="https://sthjt.shaanxi.gov.cn/">陕西省生态环境厅</option>
+            <option value="https://sthj.gansu.gov.cn/">甘肃省生态环境厅</option>
+            <option value="https://sthjt.qinghai.gov.cn/">青海省生态环境厅</option>
+            <option value="https://sthjt.nx.gov.cn/">宁夏回族自治区生态环境厅</option>
+            <option value="https://sthjt.xinjiang.gov.cn/">新疆维吾尔自治区生态环境厅</option>
+            <option value="sthjj.xjbt.gov.cn/">新疆生产建设兵团生态环境厅</option>
+        </select>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 小游戏选择弹窗 -->
+<div id="miniGameModal" class="mini-game-modal">
+    <div class="mini-game-modal-content">
+        <span class="mini-game-close" id="miniGameClose">&times;</span>
+        <h2 class="mini-game-title">🎮 选择小游戏</h2>
+        <p class="mini-game-subtitle">选择一个你想玩的小游戏</p>
+        <div class="mini-game-cards">
+            <a class="mini-game-card" href="xyx/1.html">
+                <div class="mini-game-icon">🗺️</div>
+                <h3>中国生物多样性地图</h3>
+                <p>交互式地图，探索珍稀动植物与生态地貌</p>
+                <span class="mini-game-arrow">开始探索 &rarr;</span>
+            </a>
+            <a class="mini-game-card" href="xyx/garbage-classification-game.html">
+                <div class="mini-game-icon">♻️</div>
+                <h3>垃圾分类小游戏</h3>
+                <p>拖拽垃圾到正确的垃圾桶中，学习垃圾分类知识</p>
+                <span class="mini-game-arrow">开始挑战 &rarr;</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- 小游戏按钮 -->
+<button id="miniGameBtn">🎮</button>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<!-- JS 脚本 -->
+<script>
+    // 实时时钟
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const clockElement = document.getElementById('mainClock');
+        if (clockElement) {
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 轮播
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * (100 / total));
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+
+    // 返回顶部
+    window.onscroll = function(){
+        let btn = document.getElementById('backTop');
+        let gameBtn = document.getElementById('miniGameBtn');
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        gameBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    };
+    document.getElementById('backTop').onclick = function(){
+        window.scrollTo({top:0, behavior:'smooth'});
+    };
+
+    // 小游戏选择弹窗
+    const miniGameModal = document.getElementById('miniGameModal');
+    const miniGameBtn = document.getElementById('miniGameBtn');
+    const miniGameClose = document.getElementById('miniGameClose');
+    miniGameBtn.addEventListener('click', function() {
+        miniGameModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    });
+    function closeMiniGameModal() {
+        miniGameModal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    miniGameClose.addEventListener('click', closeMiniGameModal);
+    miniGameModal.addEventListener('click', function(e) {
+        if (e.target === miniGameModal) closeMiniGameModal();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && miniGameModal.classList.contains('show')) closeMiniGameModal();
+    });
+
+    // ===== 视频轮播：数据驱动 + 懒加载 + 错误兜底 + 备用链接 =====
+    // 视频数据集中管理：修改 BV号/标题时只改这里即可；方便批量校验与替换
+    const videoList = [
+        { title: '视频1：生态文明建设宣传片',    bvid: 'BV1wM411t7WC' },
+        { title: '视频2：绿色发展典型案例',      bvid: 'BV1oT421v7cE' },
+        { title: '视频3：生态环境保护纪实',      bvid: 'BV1zt4y1X7cc' },
+        { title: '视频4：美丽中国建设成果',      bvid: 'BV19i4y1x7Hn' },
+        { title: '视频5：污染防治攻坚战',        bvid: 'BV1Tr421G7LF' },
+        { title: '视频6：生态修复工程案例',      bvid: 'BV1TY411E7JV' },
+        { title: '视频7：碳达峰碳中和行动',      bvid: 'BV1JUdzBEEcc' }
+    ];
+
+    let currentIndex = 0;
+    let loadedVideos = {};          // 懒加载缓存：{index: true}
+    let carouselInitialized = false;
+    const videoSelect = document.getElementById('videoSelect');
+    const videoCounter = document.getElementById('videoCounter');
+    const carouselStage = document.getElementById('carouselStage');
+    const totalItems = videoList.length;
+
+    // 生成 B 站播放器 URL（统一参数便于将来修改）
+    function getPlayerUrl(bvid) {
+        return `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&autoplay=0&high_quality=1&danmaku=0`;
+    }
+    // 生成 B 站视频页 URL（作为"备用链接"，当 iframe 失败时可直接跳转）
+    function getBilibiliPageUrl(bvid) {
+        return `https://www.bilibili.com/video/${bvid}`;
+    }
+
+    // 构建单个视频容器 DOM（含加载态 + 错误兜底 UI + 新窗口打开按钮）
+    function buildVideoItem(video, index) {
+        const playerUrl = getPlayerUrl(video.bvid);
+        const bilibiliPage = getBilibiliPageUrl(video.bvid);
+
+        const item = document.createElement('div');
+        item.className = 'carousel-item' + (index === currentIndex ? ' active' : '');
+        item.dataset.index = index;
+        item.innerHTML =
+            '<div class="video-loading" data-role="loading">' +
+                '<div class="loading-spinner"></div>' +
+                '<p>视频加载中，请稍候...</p>' +
+            '</div>' +
+            '<iframe data-src="' + playerUrl + '" width="100%" height="500" ' +
+                'frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups" ' +
+                'style="display:none;" referrerpolicy="no-referrer"></iframe>' +
+            '<div class="video-error" data-role="error" style="display:none;">' +
+                '<div class="error-icon">⚠️</div>' +
+                '<h4>视频加载失败</h4>' +
+                '<p>该视频可能已被删除、下架或因网络/浏览器策略无法在当前页面播放。</p>' +
+                '<div class="error-actions">' +
+                    '<a href="' + bilibiliPage + '" target="_blank" rel="noopener" class="error-btn">' +
+                        '📺 在 B 站新窗口播放' +
+                    '</a>' +
+                    '<button class="error-btn retry-btn" data-index="' + index + '">' +
+                        '🔄 重试加载' +
+                    '</button>' +
+                '</div>' +
+            '</div>' +
+            '<div class="video-actions-bar">' +
+                '<a href="' + bilibiliPage + '" target="_blank" rel="noopener" ' +
+                    'class="video-external-link" title="在 B 站新窗口打开该视频">🔗 新窗口打开视频</a>' +
+                '<span class="video-source">来源：Bilibili · ' + video.bvid + '</span>' +
+            '</div>';
+        return item;
+    }
+
+    // 懒加载：仅在视频被切换到时才真正加载 iframe（节省带宽）
+    function loadVideo(index) {
+        if (loadedVideos[index]) return;
+
+        const item = carouselStage.querySelector('.carousel-item[data-index="' + index + '"]');
+        if (!item) return;
+
+        const iframe = item.querySelector('iframe');
+        const loadingEl = item.querySelector('[data-role="loading"]');
+        const errorEl = item.querySelector('[data-role="error"]');
+
+        if (!iframe || !iframe.dataset.src) return;
+
+        // 设置真正的 src，触发加载
+        iframe.src = iframe.dataset.src;
+        delete iframe.dataset.src;
+
+        // 错误兜底 1：iframe 加载事件（部分浏览器能检测到网络错误）
+        let hasLoaded = false;
+        iframe.addEventListener('load', function () {
+            hasLoaded = true;
+            if (loadingEl) loadingEl.style.display = 'none';
+            iframe.style.display = 'block';
+        });
+
+        iframe.addEventListener('error', function () {
+            if (loadingEl) loadingEl.style.display = 'none';
+            if (errorEl) errorEl.style.display = 'flex';
+        });
+
+        // 错误兜底 2：超时检测（6 秒内无 load 事件显示备用 UI）
+        setTimeout(function () {
+            if (!hasLoaded && loadingEl && loadingEl.style.display !== 'none') {
+                loadingEl.style.display = 'none';
+                // iframe 仍保留显示（可能只是慢，用户可看到播放器或空白）
+                // 但同时显示"备用链接"操作栏，已在 video-actions-bar 上提供
+            }
+        }, 6000);
+
+        loadedVideos[index] = true;
+    }
+
+    // 初始化：渲染下拉菜单 + 所有 carousel-item 容器
+    function initCarousel() {
+        if (carouselInitialized) return;
+        carouselInitialized = true;
+
+        // 1. 渲染下拉菜单
+        videoList.forEach(function (video, index) {
+            const opt = document.createElement('option');
+            opt.value = index;
+            opt.textContent = video.title;
+            videoSelect.appendChild(opt);
+        });
+
+        // 2. 渲染所有视频容器（iframe 暂不加载 src）
+        videoList.forEach(function (video, index) {
+            carouselStage.appendChild(buildVideoItem(video, index));
+        });
+
+        // 3. 绑定"重试加载"按钮
+        carouselStage.addEventListener('click', function (e) {
+            if (e.target.classList.contains('retry-btn')) {
+                retryVideo(parseInt(e.target.dataset.index));
+            }
+        });
+
+        // 4. 加载当前（第一个）视频
+        loadVideo(currentIndex);
+        updateCounter();
+    }
+
+    // 重试：重建 iframe，强制重新触发加载
+    function retryVideo(index) {
+        const item = carouselStage.querySelector('.carousel-item[data-index="' + index + '"]');
+        if (!item) return;
+
+        const video = videoList[index];
+        const errorEl = item.querySelector('[data-role="error"]');
+        const loadingEl = item.querySelector('[data-role="loading"]');
+        const oldIframe = item.querySelector('iframe');
+
+        if (errorEl) errorEl.style.display = 'none';
+        if (loadingEl) loadingEl.style.display = 'flex';
+
+        if (oldIframe) {
+            const newIframe = oldIframe.cloneNode(false);
+            newIframe.src = getPlayerUrl(video.bvid);
+            newIframe.style.display = 'none';
+
+            newIframe.addEventListener('load', function () {
+                if (loadingEl) loadingEl.style.display = 'none';
+                newIframe.style.display = 'block';
+            });
+            newIframe.addEventListener('error', function () {
+                if (loadingEl) loadingEl.style.display = 'none';
+                if (errorEl) errorEl.style.display = 'flex';
+            });
+
+            oldIframe.parentNode.replaceChild(newIframe, oldIframe);
+        }
+    }
+
+    // 切换显示（驱动懒加载）
+    function showSlide(idx) {
+        const items = carouselStage.querySelectorAll('.carousel-item');
+        items.forEach(function (item) { item.classList.remove('active'); });
+        items[idx].classList.add('active');
+        currentIndex = idx;
+        videoSelect.value = idx;
+        loadVideo(idx);
+        updateCounter();
+    }
+
+    function changeVideo() {
+        showSlide(parseInt(videoSelect.value));
+    }
+    function nextSlide() { showSlide((currentIndex + 1) % totalItems); }
+    function prevSlide() { showSlide((currentIndex - 1 + totalItems) % totalItems); }
+    function updateCounter() {
+        if (videoCounter) videoCounter.textContent = (currentIndex + 1) + ' / ' + totalItems;
+    }
+
+    // 初始化（兼容 DOMContentLoaded 已触发的情况）
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCarousel);
+    } else {
+        initCarousel();
+    }
+
+    // 省份跳转
+    function goProvincePage(){
+        let url = document.getElementById("provinceSelect").value;
+        if(url){ window.open(url, "_blank"); }
+        document.getElementById("provinceSelect").value = "";
+    }
+
+    // 下拉菜单交互
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdowns = document.querySelectorAll('.nav-list li.dropdown');
+        
+        dropdowns.forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+            });
+        });
+        
+        document.addEventListener('click', function() {
+            dropdowns.forEach(function(dropdown) {
+                dropdown.classList.remove('open');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
