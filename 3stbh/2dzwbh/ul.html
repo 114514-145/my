@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动植物保护 - 生态保护</title>
+    <link rel="stylesheet" href="./css/1.1.1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-生态保护</h1>
+        </div>
+    </div>
+</header>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="./1zxdw/ul.html">珍稀动物</a></li>
+            <li><a href="./2bwzw/ul.html">濒危植物</a></li>
+            <li><a href="./3wzjy/ul.html">物种监测</a></li>
+            <li><a href="./4qxdbh/ul.html">栖息地保护</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>动植物保护</h2>
+        <p>保护生物多样性 · 守护珍稀物种 · 维护生态平衡</p>
+    </div>
+</div>
+
+<!-- 原有内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <!-- 珍稀动物 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>珍稀动物</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">大熊猫保护与研究进展</a></li>
+                    <li><a href="#">东北虎豹国家公园建设</a></li>
+                    <li><a href="#">朱鹮种群恢复成功案例</a></li>
+                    <li><a href="#">长江江豚保护措施</a></li>
+                    <li><a href="#">金丝猴栖息地保护工程</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 濒危植物 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>濒危植物</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">国家重点保护野生植物名录</a></li>
+                    <li><a href="#">珍稀植物迁地保护措施</a></li>
+                    <li><a href="#">植物园种质资源保存</a></li>
+                    <li><a href="#">野生药材资源保护利用</a></li>
+                    <li><a href="#">古树名木保护管理办法</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 物种监测 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>物种监测</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">野生动物资源调查技术</a></li>
+                    <li><a href="#">红外相机监测网络建设</a></li>
+                    <li><a href="#">DNA条形码物种鉴定技术</a></li>
+                    <li><a href="#">卫星追踪迁徙动物研究</a></li>
+                    <li><a href="#">生物多样性观测站点布局</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 栖息地保护 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>栖息地保护</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">野生动物廊道建设规划</a></li>
+                    <li><a href="#">重要栖息地划定与管理</a></li>
+                    <li><a href="#">栖息地破碎化修复技术</a></li>
+                    <li><a href="#">人工巢穴与繁殖基地建设</a></li>
+                    <li><a href="#">栖息地质量评估指标体系</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- ========== 返回顶部按钮（半透明 + 固定右下角） ========== -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

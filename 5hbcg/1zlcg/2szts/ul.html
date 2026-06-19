@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水质统计 - 治理成效</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../ul.html">治理成效</a></li>
+            <li class="active"><a href="./ul.html">水质统计</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>水质统计</h2>
+        <p>监测水环境质量 · 保护水资源 · 建设美丽河湖</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title">
+                <h3>地表水质量</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">全国地表水水质状况公报</a></li>
+                    <li><a href="#">重点流域水质监测数据</a></li>
+                    <li><a href="#">饮用水水源地达标情况</a></li>
+                    <li><a href="#">湖泊富营养化状况评估</a></li>
+                    <li><a href="#">跨界断面水质考核</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>污水处理</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">城镇污水处理厂建设</a></li>
+                    <li><a href="#">工业废水处理技术应用</a></li>
+                    <li><a href="#">农村污水治理模式探索</a></li>
+                    <li><a href="#">中水回用技术推广</a></li>
+                    <li><a href="#">污泥无害化处理处置</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>黑臭水体治理</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">城市黑臭水体整治成效</a></li>
+                    <li><a href="#">河道清淤疏浚工程</a></li>
+                    <li><a href="#">截污纳管系统建设</a></li>
+                    <li><a href="#">生态修复技术应用</a></li>
+                    <li><a href="#">长效管理机制建立</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>海洋环境保护</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">近岸海域水质监测</a></li>
+                    <li><a href="#">海洋垃圾清理行动</a></li>
+                    <li><a href="#">赤潮灾害预警防控</a></li>
+                    <li><a href="#">海洋保护区建设管理</a></li>
+                    <li><a href="#">陆源污染物排放控制</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<button id="backTop">↑</button>
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

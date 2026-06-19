@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>志愿服务 - 绿色行动</title>
+    <link rel="stylesheet" href="./css/1.1.1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-绿色行动</h1>
+        </div>
+    </div>
+</header>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="./1hbsy/ul.html">环保公益</a></li>
+            <li><a href="./2hbhh/ul.html">环保活动</a></li>
+            <li><a href="./3cysj/ul.html">创意实践</a></li>
+            <li><a href="./4hbzw/ul.html">环保组织</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>志愿服务</h2>
+        <p>汇聚志愿力量 · 践行环保行动 · 共建美好家园</p>
+    </div>
+</div>
+
+<!-- 原有内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <!-- 环保公益 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>环保公益</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">环保志愿者招募与注册管理</a></li>
+                    <li><a href="#">志愿者培训与能力建设</a></li>
+                    <li><a href="#">志愿服务时长认证制度</a></li>
+                    <li><a href="#">优秀志愿者表彰激励机制</a></li>
+                    <li><a href="#">志愿服务项目策划与管理</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 环保活动 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>环保活动</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">义务植树造林活动开展</a></li>
+                    <li><a href="#">河流清洁保护志愿行动</a></li>
+                    <li><a href="#">海滩垃圾清理公益活动</a></li>
+                    <li><a href="#">野生动物救助志愿服务</a></li>
+                    <li><a href="#">环保骑行宣传活动组织</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 创意实践 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>创意实践</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">废旧物品创意改造工作坊</a></li>
+                    <li><a href="#">环保手工制作技能培训</a></li>
+                    <li><a href="#">绿色生活创新方案设计</a></li>
+                    <li><a href="#">环保科技小发明竞赛</a></li>
+                    <li><a href="#">可持续生活方式体验营</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 环保组织 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>环保组织</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">民间环保组织登记注册指南</a></li>
+                    <li><a href="#">环保NGO项目合作与交流</a></li>
+                    <li><a href="#">企业环保志愿服务队建设</a></li>
+                    <li><a href="#">高校环保社团联盟活动</a></li>
+                    <li><a href="#">社区环保志愿者服务站</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- ========== 返回顶部按钮（半透明 + 固定右下角） ========== -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

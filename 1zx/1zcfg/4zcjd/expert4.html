@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贺克斌 - 生态环境频道</title>
+    <link rel="stylesheet" href="../css/1.css">
+    <style>
+        .expert-detail-container {
+            padding: 50px 0;
+        }
+        
+        .expert-profile {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 40px;
+        }
+        
+        .expert-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            border: 4px solid #e8f5e9;
+            box-shadow: 0 8px 24px rgba(22, 92, 46, 0.2);
+        }
+        
+        .expert-basic-info {
+            flex: 1;
+        }
+        
+        .expert-basic-info h2 {
+            font-size: 32px;
+            color: #165c2e;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .expert-position {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+        
+        .expert-intro {
+            font-size: 16px;
+            color: #555;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+        
+        .expert-achievements {
+            background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+        
+        .expert-achievements h3 {
+            font-size: 20px;
+            color: #165c2e;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .achievement-list li {
+            font-size: 15px;
+            color: #555;
+            line-height: 2;
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        
+        .achievement-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #165c2e;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .expert-quotes {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .expert-quotes h3 {
+            font-size: 24px;
+            color: #165c2e;
+            margin-bottom: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .quote-item {
+            background: linear-gradient(135deg, #f8faf9 0%, #fff 100%);
+            border-left: 4px solid #165c2e;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .quote-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .quote-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .quote-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -5px;
+            font-size: 36px;
+            color: #165c2e;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-source {
+            font-size: 14px;
+            color: #999;
+            text-align: right;
+        }
+        
+        .back-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #165c2e 0%, #0d4722 100%);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .back-link:hover {
+            background: linear-gradient(135deg, #0d4722 0%, #165c2e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 92, 46, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念 · 深度解读政策</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-专家风采</h1>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- 专家详情内容 -->
+<div class="container expert-detail-container">
+    <div class="wrapper">
+        
+        <!-- 专家基本信息 -->
+        <div class="expert-profile">
+            <div class="expert-photo" style="background-image:url(./img/expert4.jpg)"></div>
+            <div class="expert-basic-info">
+                <h2>贺克斌</h2>
+                <p class="expert-position">中国工程院院士 | 清华大学碳中和研究院院长</p>
+                <div class="expert-intro">
+                    <p>贺克斌院士是中国工程院院士，清华大学环境学院教授、博士生导师，现任清华大学碳中和研究院院长。他是我国大气污染控制和碳中和研究领域的著名专家，长期致力于空气质量改善和气候变化应对研究。</p>
+                    <p style="margin-top: 12px;">作为清华大学的学术带头人，贺克斌院士在PM2.5来源解析、臭氧污染防控、碳排放清单编制等方面取得了重要突破，为我国大气污染防治和碳中和战略提供了重要的科学依据。</p>
+                </div>
+                
+                <div class="expert-achievements">
+                    <h3>主要成就与贡献</h3>
+                    <ul class="achievement-list">
+                        <li>创立大气复合污染来源解析理论和关键技术</li>
+                        <li>牵头编制中国高分辨率碳排放清单数据库</li>
+                        <li>提出多污染物协同控制和减污降碳协同增效技术路线</li>
+                        <li>推动建立京津冀及周边地区大气污染联防联控机制</li>
+                        <li>获得国家自然科学二等奖、何梁何利基金科学与技术进步奖</li>
+                        <li>发表SCI论文400余篇，被引次数超过2万次</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 专家观点集锦 -->
+        <div class="expert-quotes">
+            <h3>经典观点与论述</h3>
+            
+            <div class="quote-item">
+                <p class="quote-text">实现碳中和目标需要能源、工业、交通等多领域协同发力，技术创新是关键支撑，要通过科技创新降低减排成本，提高减排效率。</p>
+                <p class="quote-source">—— 关于碳中和路径的观点</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">大气污染治理和碳减排具有同根同源的特点，要实现空气质量改善和气候变化的协同治理，走出一条中国特色的绿色低碳发展道路。</p>
+                <p class="quote-source">—— 关于协同治理的思考</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">碳中和不是简单的零排放，而是要通过能源结构优化、产业结构调整、技术创新等手段，实现经济社会发展与碳排放脱钩。</p>
+                <p class="quote-source">—— 关于碳中和内涵的阐释</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">高校和科研机构要在碳中和研究中发挥重要作用，加强基础研究和关键技术攻关，为国家决策提供科学支撑。</p>
+                <p class="quote-source">—— 关于科研责任的论述</p>
+            </div>
+        </div>
+        
+        <!-- 返回链接 -->
+        <div style="text-align: center;">
+            <a href="./ul.html" class="back-link">← 返回政策解读页面</a>
+        </div>
+        
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<!-- JS -->
+<script>
+    // 返回顶部
+    window.addEventListener('scroll', function () {
+        const btn = document.getElementById('backTop');
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    document.getElementById('backTop').onclick = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+</script>
+
+</body>
+</html>

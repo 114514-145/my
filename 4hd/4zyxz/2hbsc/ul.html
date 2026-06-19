@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湿地保护 - 自然保护</title>
+    <link rel="stylesheet" href="./css/1.1.1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-生态保护</h1>
+        </div>
+    </div>
+</header>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../ul.html">自然保护</a></li>
+            <li class="active"><a href="./ul.html">湿地保护</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>湿地保护</h2>
+        <p>守护地球之肾 · 保护湿地生态 · 维护生物多样性</p>
+    </div>
+</div>
+
+<!-- 内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title">
+                <h3>湿地类型</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">沼泽湿地生态系统特征</a></li>
+                    <li><a href="#">湖泊湿地保护与管理</a></li>
+                    <li><a href="#">河流湿地生态修复技术</a></li>
+                    <li><a href="#">滨海湿地保护现状分析</a></li>
+                    <li><a href="#">人工湿地建设与应用</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>重要湿地</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">国际重要湿地认定标准</a></li>
+                    <li><a href="#">国家重要湿地名录发布</a></li>
+                    <li><a href="#">湿地自然保护区建设</a></li>
+                    <li><a href="#">湿地公园规划与管理</a></li>
+                    <li><a href="#">湿地生态功能价值评估</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>湿地修复</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">退化湿地生态恢复技术</a></li>
+                    <li><a href="#">湿地植被重建方法</a></li>
+                    <li><a href="#">湿地水文条件改善措施</a></li>
+                    <li><a href="#">外来物种清除与控制</a></li>
+                    <li><a href="#">湿地连通性恢复工程</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>保护政策</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">湿地保护法实施条例解读</a></li>
+                    <li><a href="#">湿地占补平衡管理制度</a></li>
+                    <li><a href="#">湿地生态补偿机制探索</a></li>
+                    <li><a href="#">湿地保护红线划定方案</a></li>
+                    <li><a href="#">湿地保护志愿者行动计划</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- ========== 返回顶部按钮（半透明 + 固定右下角） ========== -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

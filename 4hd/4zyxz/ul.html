@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众参与 - 绿色行动</title>
+    <link rel="stylesheet" href="./css/1.1.1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-绿色行动</h1>
+        </div>
+    </div>
+</header>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../../index.html">首页</a></li>  
+            <li><a href="./1xchb/ul.html">行动环保</a></li>
+            <li><a href="./2hbsc/ul.html">环保市场</a></li>
+            <li><a href="./3hdfa/ul.html">活动方案</a></li>
+            <li><a href="./4jxkj/ul.html">经验科技</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>公众参与</h2>
+        <p>激发公众热情 · 推动全民行动 · 共建生态文明</p>
+    </div>
+</div>
+
+<!-- 原有内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <!-- 行动环保 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>行动环保</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">环保公益项目众筹平台</a></li>
+                    <li><a href="#">环境问题举报投诉渠道</a></li>
+                    <li><a href="#">公众环保行为激励机制</a></li>
+                    <li><a href="#">绿色消费倡导与推广</a></li>
+                    <li><a href="#">碳普惠平台建设与应用</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 环保市场 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>环保市场</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">绿色产品认证与标识制度</a></li>
+                    <li><a href="#">环保标志产品采购指南</a></li>
+                    <li><a href="#">二手物品交易平台建设</a></li>
+                    <li><a href="#">共享经济模式环保效益</a></li>
+                    <li><a href="#">绿色消费市场发展趋势</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 活动方案 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>活动方案</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">世界环境日主题活动策划</a></li>
+                    <li><a href="#">全国低碳日宣传推广方案</a></li>
+                    <li><a href="#">地球一小时活动组织指南</a></li>
+                    <li><a href="#">生物多样性日科普活动</a></li>
+                    <li><a href="#">节能宣传周实施方案</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 经验科技 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>经验科技</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">智慧环保APP功能与应用</a></li>
+                    <li><a href="#">区块链技术在环保中的应用</a></li>
+                    <li><a href="#">大数据环境监测分析平台</a></li>
+                    <li><a href="#">人工智能辅助环境决策</a></li>
+                    <li><a href="#">物联网智能垃圾分类系统</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- ========== 返回顶部按钮（半透明 + 固定右下角） ========== -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

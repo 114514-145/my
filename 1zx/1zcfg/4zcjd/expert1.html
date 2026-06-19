@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曲格平 - 生态环境频道</title>
+    <link rel="stylesheet" href="../css/1.css">
+    <style>
+        .expert-detail-container {
+            padding: 50px 0;
+        }
+        
+        .expert-profile {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 40px;
+        }
+        
+        .expert-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            border: 4px solid #e8f5e9;
+            box-shadow: 0 8px 24px rgba(22, 92, 46, 0.2);
+        }
+        
+        .expert-basic-info {
+            flex: 1;
+        }
+        
+        .expert-basic-info h2 {
+            font-size: 32px;
+            color: #165c2e;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .expert-position {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+        
+        .expert-intro {
+            font-size: 16px;
+            color: #555;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+        
+        .expert-achievements {
+            background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+        
+        .expert-achievements h3 {
+            font-size: 20px;
+            color: #165c2e;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .achievement-list li {
+            font-size: 15px;
+            color: #555;
+            line-height: 2;
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        
+        .achievement-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #165c2e;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .expert-quotes {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .expert-quotes h3 {
+            font-size: 24px;
+            color: #165c2e;
+            margin-bottom: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .quote-item {
+            background: linear-gradient(135deg, #f8faf9 0%, #fff 100%);
+            border-left: 4px solid #165c2e;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .quote-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .quote-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .quote-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -5px;
+            font-size: 36px;
+            color: #165c2e;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-source {
+            font-size: 14px;
+            color: #999;
+            text-align: right;
+        }
+        
+        .back-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #165c2e 0%, #0d4722 100%);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .back-link:hover {
+            background: linear-gradient(135deg, #0d4722 0%, #165c2e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 92, 46, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念 · 深度解读政策</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-专家风采</h1>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- 专家详情内容 -->
+<div class="container expert-detail-container">
+    <div class="wrapper">
+        
+        <!-- 专家基本信息 -->
+        <div class="expert-profile">
+            <div class="expert-photo" style="background-image:url(./img/expert1.jpg)"></div>
+            <div class="expert-basic-info">
+                <h2>曲格平</h2>
+                <p class="expert-position">中国环境科学学会名誉理事长 | 原国家环保总局局长</p>
+                <div class="expert-intro">
+                    <p>曲格平先生是中国环境保护事业的开拓者和奠基人之一，长期从事环境保护工作，为中国环保事业的发展做出了卓越贡献。他曾任国家环保总局局长、全国人大环境与资源保护委员会主任委员等重要职务。</p>
+                    <p style="margin-top: 12px;">作为中国环境政策的制定者和推动者，曲格平先生提出了许多具有前瞻性的环保理念，包括"绿水青山就是金山银山"的生态文明思想，为推动中国从工业文明向生态文明转型发挥了重要作用。</p>
+                </div>
+                
+                <div class="expert-achievements">
+                    <h3>主要成就与贡献</h3>
+                    <ul class="achievement-list">
+                        <li>推动建立中国环境保护基本国策地位</li>
+                        <li>主导制定《环境保护法》等多部重要环保法律法规</li>
+                        <li>提出并推广可持续发展战略在中国的实施</li>
+                        <li>推动建立环境影响评价制度和排污许可制度</li>
+                        <li>倡导生态文明建设理念，推动绿色发展转型</li>
+                        <li>获得联合国环境规划署"全球500佳"等多项国际荣誉</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 专家观点集锦 -->
+        <div class="expert-quotes">
+            <h3>经典观点与论述</h3>
+            
+            <div class="quote-item">
+                <p class="quote-text">生态环境保护是功在当代、利在千秋的事业，必须坚持绿水青山就是金山银山的理念，让良好生态环境成为人民生活质量的增长点。</p>
+                <p class="quote-source">—— 关于生态文明建设的论述</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">环境保护不是经济发展的对立面，而是高质量发展的重要支撑。只有走绿色发展之路，才能实现经济社会的可持续发展。</p>
+                <p class="quote-source">—— 关于绿色发展的观点</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">环境治理必须依靠法治，要建立健全最严格的生态环境保护法律制度，用最严格的制度、最严密的法治保护生态环境。</p>
+                <p class="quote-source">—— 关于环境法治的思考</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">公众参与是环境保护的重要力量，要提高全民环保意识，形成人人关心环保、人人参与环保的良好社会氛围。</p>
+                <p class="quote-source">—— 关于公众参与的呼吁</p>
+            </div>
+        </div>
+        
+        <!-- 返回链接 -->
+        <div style="text-align: center;">
+            <a href="./ul.html" class="back-link">← 返回政策解读页面</a>
+        </div>
+        
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<!-- JS -->
+<script>
+    // 返回顶部
+    window.addEventListener('scroll', function () {
+        const btn = document.getElementById('backTop');
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    document.getElementById('backTop').onclick = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+</script>
+
+</body>
+</html>

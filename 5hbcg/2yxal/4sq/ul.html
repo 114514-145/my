@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区生态 - 示范项目</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../ul.html">示范项目</a></li>
+            <li><a href="../1cs/ul.html">城市生态</a></li>
+            <li><a href="../2xc/ul.html">乡村生态</a></li>
+            <li><a href="../3qy/ul.html">区域生态</a></li>
+            <li class="active"><a href="./ul.html">社区生态</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>社区生态</h2>
+        <p>建设绿色社区 · 推动居民参与 · 营造美好家园</p>
+    </div>
+</div>
+
+<!-- 内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title">
+                <h3>绿色社区建设</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">绿色社区创建标准与指南</a></li>
+                    <li><a href="#">社区绿化景观设计方案</a></li>
+                    <li><a href="#">社区公共空间生态改造</a></li>
+                    <li><a href="#">屋顶花园与垂直绿化实践</a></li>
+                    <li><a href="#">社区雨水收集利用系统</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>垃圾分类管理</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">生活垃圾分类投放规范</a></li>
+                    <li><a href="#">智能垃圾分类设备应用</a></li>
+                    <li><a href="#">厨余垃圾就地处理技术</a></li>
+                    <li><a href="#">可回收物回收利用体系</a></li>
+                    <li><a href="#">有害垃圾安全处置方案</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>节能环保推广</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">社区节能照明改造项目</a></li>
+                    <li><a href="#">太阳能热水系统推广应用</a></li>
+                    <li><a href="#">新能源汽车充电桩建设</a></li>
+                    <li><a href="#">社区能源管理平台建设</a></li>
+                    <li><a href="#">低碳生活方式倡导活动</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>社区环保活动</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">社区环保志愿者队伍建设</a></li>
+                    <li><a href="#">环保知识科普宣传活动</a></li>
+                    <li><a href="#">旧物交换与共享活动组织</a></li>
+                    <li><a href="#">社区植树护绿实践活动</a></li>
+                    <li><a href="#">环保家庭评选与表彰</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

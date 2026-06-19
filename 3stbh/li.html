@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生态保护 - 生态环境频道</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span class="bar-text">聚焦生态环境 · 传播绿色理念</span>
+        <span class="clock" id="mainClock">--:--:--</span>
+    </div>
+</div>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../index.html">首页</a></li>
+            <li><a href="../1zx/li.html">环保资讯</a></li>
+            <li><a href="../2kp/li.html">环保科普</a></li>
+            <li class="active"><a href="./li.html">生态保护</a></li>
+            <li><a href="../4hd/li.html">绿色行动</a></li>
+            <li><a href="../5hbcg/li.html">环保成果</a></li>
+            <li><a href="../6gywm/li.html">关于我们</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 生态保护 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>生态保护</h2>
+        <p>守护自然生态 · 保护生物多样性 · 建设美丽中国</p>
+    </div>
+</div>
+
+<!-- 内容区：自然保护、动植物保护、生态修复、流域治理 -->
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title"><h3><a href="./1zrbh/ul.html">自然保护</a></h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">国家公园体系建设进展</a></li>
+                    <li><a href="#">自然保护区管理与成效</a></li>
+                    <li><a href="#">生态保护红线划定与监管</a></li>
+                    <li><a href="#">重要生态系统保护工程</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3><a href="./2dzwbh/ul.html">动植物保护</a></h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">珍稀濒危物种保护行动</a></li>
+                    <li><a href="#">野生动物栖息地恢复工程</a></li>
+                    <li><a href="#">植物多样性保护措施</a></li>
+                    <li><a href="#">外来入侵物种防控策略</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3><a href="./3hjxf/ul.html">生态修复</a></h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">矿山生态修复典型案例</a></li>
+                    <li><a href="#">退化草原治理与恢复</a></li>
+                    <li><a href="#">荒漠化防治工程进展</a></li>
+                    <li><a href="#">湿地保护与修复技术</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3>流域治理</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">长江大保护战略实施</a></li>
+                    <li><a href="#">黄河流域生态保护规划</a></li>
+                    <li><a href="#">重点湖泊综合治理工程</a></li>
+                    <li><a href="#">水源地保护与水质改善</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS：4张图自动平滑轮播 -->
+<script>
+    // 实时时钟
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const clockElement = document.getElementById('mainClock');
+        if (clockElement) {
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * (100 / total));
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

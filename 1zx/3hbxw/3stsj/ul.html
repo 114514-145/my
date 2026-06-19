@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时事件 - 生态环境频道</title>
+    <link rel="stylesheet" href="../css/1.1.3.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span class="bar-text">聚焦生态环境 · 传播绿色理念</span>
+        <span class="clock" id="mainClock">--:--:--</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-实时事件</h1>
+        </div>
+    </div>
+</header>
+
+<!-- 一级导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../../../index.html">首页</a></li>
+            <li><a href="../ul.html">环保新闻</a></li>
+            <li><a href="../1bdxw/ul.html">本地新闻</a></li>
+            <li><a href="../2qgsj/ul.html">企业视角</a></li>
+            <li class="active">实时事件</li>
+            <li><a href="../4hjbg/ul.html">环境公报</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 内容主体 -->
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title">
+                <h3>环境事件实时追踪</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">重大环境事件通报</a></li>
+                    <li><a href="#">环保督察动态追踪</a></li>
+                    <li><a href="#">环境应急响应进展</a></li>
+                    <li><a href="#">生态修复工程进度</a></li>
+                    <li><a href="#">环境舆情热点关注</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<!-- JS -->
+<script>
+    // 实时时钟
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const clockElement = document.getElementById('mainClock');
+        if (clockElement) {
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 返回顶部
+    window.addEventListener('scroll', function () {
+        const btn = document.getElementById('backTop');
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    document.getElementById('backTop').onclick = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+</script>
+
+</body>
+</html>

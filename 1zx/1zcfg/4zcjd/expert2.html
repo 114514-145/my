@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夏光 - 生态环境频道</title>
+    <link rel="stylesheet" href="../css/1.css">
+    <style>
+        .expert-detail-container {
+            padding: 50px 0;
+        }
+        
+        .expert-profile {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 40px;
+        }
+        
+        .expert-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            border: 4px solid #e8f5e9;
+            box-shadow: 0 8px 24px rgba(22, 92, 46, 0.2);
+        }
+        
+        .expert-basic-info {
+            flex: 1;
+        }
+        
+        .expert-basic-info h2 {
+            font-size: 32px;
+            color: #165c2e;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .expert-position {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+        
+        .expert-intro {
+            font-size: 16px;
+            color: #555;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+        
+        .expert-achievements {
+            background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+        
+        .expert-achievements h3 {
+            font-size: 20px;
+            color: #165c2e;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .achievement-list li {
+            font-size: 15px;
+            color: #555;
+            line-height: 2;
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        
+        .achievement-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #165c2e;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .expert-quotes {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .expert-quotes h3 {
+            font-size: 24px;
+            color: #165c2e;
+            margin-bottom: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .quote-item {
+            background: linear-gradient(135deg, #f8faf9 0%, #fff 100%);
+            border-left: 4px solid #165c2e;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .quote-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .quote-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .quote-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -5px;
+            font-size: 36px;
+            color: #165c2e;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-source {
+            font-size: 14px;
+            color: #999;
+            text-align: right;
+        }
+        
+        .back-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #165c2e 0%, #0d4722 100%);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .back-link:hover {
+            background: linear-gradient(135deg, #0d4722 0%, #165c2e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 92, 46, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念 · 深度解读政策</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-专家风采</h1>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- 专家详情内容 -->
+<div class="container expert-detail-container">
+    <div class="wrapper">
+        
+        <!-- 专家基本信息 -->
+        <div class="expert-profile">
+            <div class="expert-photo" style="background-image:url(./img/expert2.jpg)"></div>
+            <div class="expert-basic-info">
+                <h2>夏光</h2>
+                <p class="expert-position">生态环境部环境与经济政策研究中心主任 | 研究员</p>
+                <div class="expert-intro">
+                    <p>夏光研究员是生态环境部环境与经济政策研究中心主任，长期从事环境经济政策研究，在绿色金融、环境税、生态补偿等领域有深入研究。他是我国环境经济政策研究领域的领军学者之一。</p>
+                    <p style="margin-top: 12px;">作为政策研究机构负责人，夏光研究员主持完成了多项国家重大环境经济政策研究课题，为推动我国环境治理体系现代化和绿色发展转型提供了重要的理论支撑和政策建议。</p>
+                </div>
+                
+                <div class="expert-achievements">
+                    <h3>主要成就与贡献</h3>
+                    <ul class="achievement-list">
+                        <li>推动建立中国绿色金融政策体系和标准框架</li>
+                        <li>主导环境税制度设计与实施路径研究</li>
+                        <li>创新提出生态系统服务价值核算方法</li>
+                        <li>推动建立流域生态补偿机制和政策试点</li>
+                        <li>主持编制多部环境经济政策研究报告</li>
+                        <li>发表学术论文百余篇，出版专著多部</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 专家观点集锦 -->
+        <div class="expert-quotes">
+            <h3>经典观点与论述</h3>
+            
+            <div class="quote-item">
+                <p class="quote-text">绿色金融是推动经济社会绿色转型的重要工具，需要完善政策体系和市场机制，引导更多社会资本投向绿色低碳领域。</p>
+                <p class="quote-source">—— 关于绿色金融的观点</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">环境经济政策的核心是通过市场机制和经济手段，将环境成本内部化，实现环境保护与经济发展的协调统一。</p>
+                <p class="quote-source">—— 关于环境经济政策的思考</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">生态补偿是实现生态保护者受益、使用者付费的重要制度安排，要建立多元化、市场化的生态补偿机制。</p>
+                <p class="quote-source">—— 关于生态补偿的论述</p>
+            </div>
+            
+            <div class="quote-item">
+                <p class="quote-text">环境税不仅是筹集环保资金的工具，更是调节企业行为、促进绿色转型的有效经济杠杆。</p>
+                <p class="quote-source">—— 关于环境税制的见解</p>
+            </div>
+        </div>
+        
+        <!-- 返回链接 -->
+        <div style="text-align: center;">
+            <a href="./ul.html" class="back-link">← 返回政策解读页面</a>
+        </div>
+        
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<!-- JS -->
+<script>
+    // 返回顶部
+    window.addEventListener('scroll', function () {
+        const btn = document.getElementById('backTop');
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    document.getElementById('backTop').onclick = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+</script>
+
+</body>
+</html>

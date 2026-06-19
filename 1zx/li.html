@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环保资讯 - 生态环境频道</title>
+    <link rel="stylesheet" href="./css/1.1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span class="bar-text">聚焦生态环境 · 传播绿色理念</span>
+        <span class="clock" id="mainClock">--:--:--</span>
+    </div>
+</div>
+
+
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+           <li><a href="../index.html">首页</a></li>
+            <li class="active"><a href="../1zx/li.html">环保资讯</a></li>
+            <li ><a href="../2kp/li.html">环保科普</a></li>
+            <li><a href="../3stbh/li.html">生态保护</a></li>
+            <li><a href="../4hd/li.html">绿色行动</a></li>
+            <li><a href="../5hbcg/li.html">环保成果</a></li>
+            <li><a href="../6gywm/li.html">关于我们</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 环保资讯 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>环保资讯</h2>
+        <p>传递环保政策 · 聚焦行业动态 · 关注生态环境</p>
+    </div>
+</div>
+
+<!-- 内容区：政策法规、行业动态、环保新闻 -->
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title"><h3><a href="./1zcfg/ul.html">政策法规</a></h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="http://www.npc.gov.cn/zgrdw/npc/zt/qt/2014zhhbsjx/2014-04/25/content_1865490.htm" target="_blank">中华人民共和国环境保护法</a></li>
+                    <li><a href="http://www.npc.gov.cn/zgrdw/npc/xinwen/2015-08/31/content_1945589.htm" target="_blank">大气污染防治法</a></li>
+                    <li><a href="http://www.npc.gov.cn/c1773/c2518/2019zhhbsjx/sjxflfg/201906/t20190628_292991.html" target="_blank">水污染防治法</a></li>
+                    <li><a href="http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_281576.html" target="_blank">土壤污染防治法</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3><a href="./2hydt/ul.html">行业动态</a></h3></div>
+            <div class="info-list">
+                <ul>
+                    <li>环保产业高质量发展加快推进</li>
+                    <li>新能源技术助力绿色低碳转型</li>
+                    <li>全国碳市场运行平稳有序</li>
+                    <li>环保企业创新能力持续提升</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3><a href="./3hbxw/ul.html">环保新闻</a></h3></div>
+            <div class="info-list">
+                <ul>
+                    <li>全国生态环境质量持续改善</li>
+                    <li>多地开展蓝天保卫战专项行动</li>
+                    <li>长江流域生态保护成效显著</li>
+                    <li>垃圾分类全面推进效果明显</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS：4张图自动平滑轮播 -->
+<script>
+    // 实时时钟
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const clockElement = document.getElementById('mainClock');
+        if (clockElement) {
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * (100 / total));
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- ========== 返回顶部按钮（半透明 + 固定右下角） ========== -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

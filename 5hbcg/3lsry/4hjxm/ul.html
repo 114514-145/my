@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环境项目 - 科技创新</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<body>
+
+<div class="top-bar"><div class="wrapper"><span>聚焦生态环境 · 传播绿色理念</span></div></div>
+
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../ul.html">科技创新</a></li>
+            <li class="active"><a href="./ul.html">环境项目</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>环境项目</h2>
+        <p>实施重点项目 · 推动成果转化 · 促进产业发展</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title"><h3>国家重点研发</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">大气污染成因与控制研究</a></li>
+                    <li><a href="#">水污染治理技术与示范</a></li>
+                    <li><a href="#">土壤污染防治技术研究</a></li>
+                    <li><a href="#">固废资源化利用技术</a></li>
+                    <li><a href="#">生态修复关键技术研发</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3>科技成果转化</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">科技成果评价体系</a></li>
+                    <li><a href="#">技术转移转化平台</a></li>
+                    <li><a href="#">产业化示范基地</a></li>
+                    <li><a href="#">技术推广应用指南</a></li>
+                    <li><a href="#">知识产权保护机制</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3>产学研合作</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">联合实验室建设</a></li>
+                    <li><a href="#">技术创新联盟</a></li>
+                    <li><a href="#">人才培养基地</a></li>
+                    <li><a href="#">协同创新中心</a></li>
+                    <li><a href="#">科技资源共享平台</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3>国际合作项目</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">双边科技合作协议</a></li>
+                    <li><a href="#">多边环境公约履约</a></li>
+                    <li><a href="#">国际联合研究计划</a></li>
+                    <li><a href="#">技术交流与培训</a></li>
+                    <li><a href="#">援外环保项目</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer"><div class="wrapper"><p>廖利斌-2504020228</p></div></footer>
+
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<button id="backTop">↑</button>
+<style>
+#backTop {position: fixed;right: 25px;bottom: 25px;width: 48px;height: 48px;border-radius: 50%;background: rgba(22, 92, 46, 0.55);color: white;font-size: 22px;font-weight: bold;border: none;cursor: pointer;z-index: 999;display: none;transition: all 0.3s ease;}
+#backTop:hover {background: rgba(13, 71, 34, 0.85);transform: scale(1.1);}
+</style>
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){btn.style.display = 'block';}else{btn.style.display = 'none';}
+});
+document.getElementById('backTop').onclick = function(){window.scrollTo({ top:0, behavior: 'smooth' });};
+</script>
+
+</body>
+</html>

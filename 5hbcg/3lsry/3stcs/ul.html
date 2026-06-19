@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生态测试 - 科技创新</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<body>
+
+<div class="top-bar"><div class="wrapper"><span>聚焦生态环境 · 传播绿色理念</span></div></div>
+
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../ul.html">科技创新</a></li>
+            <li class="active"><a href="./ul.html">生态测试</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>生态测试</h2>
+        <p>精准环境监测 · 智能数据分析 · 科学决策支持</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title"><h3>环境监测技术</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">空气质量自动监测系统</a></li>
+                    <li><a href="#">水质在线监测设备</a></li>
+                    <li><a href="#">土壤污染快速检测</a></li>
+                    <li><a href="#">噪声实时监测网络</a></li>
+                    <li><a href="#">移动监测车应用</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3>遥感监测</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">卫星遥感数据应用</a></li>
+                    <li><a href="#">无人机巡查监测</a></li>
+                    <li><a href="#">高光谱成像技术</a></li>
+                    <li><a href="#">变化检测分析方法</a></li>
+                    <li><a href="#">三维建模与可视化</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3>大数据分析</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">环境大数据平台建设</a></li>
+                    <li><a href="#">数据挖掘与分析算法</a></li>
+                    <li><a href="#">预测预警模型构建</a></li>
+                    <li><a href="#">可视化展示技术</a></li>
+                    <li><a href="#">决策支持系统开发</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title"><h3>物联网应用</h3></div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">传感器网络部署</a></li>
+                    <li><a href="#">智能网关技术研发</a></li>
+                    <li><a href="#">边缘计算技术应用</a></li>
+                    <li><a href="#">5G通信技术支持</a></li>
+                    <li><a href="#">云平台架构设计</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer"><div class="wrapper"><p>廖利斌-2504020228</p></div></footer>
+
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<button id="backTop">↑</button>
+<style>
+#backTop {position: fixed;right: 25px;bottom: 25px;width: 48px;height: 48px;border-radius: 50%;background: rgba(22, 92, 46, 0.55);color: white;font-size: 22px;font-weight: bold;border: none;cursor: pointer;z-index: 999;display: none;transition: all 0.3s ease;}
+#backTop:hover {background: rgba(13, 71, 34, 0.85);transform: scale(1.1);}
+</style>
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){btn.style.display = 'block';}else{btn.style.display = 'none';}
+});
+document.getElementById('backTop').onclick = function(){window.scrollTo({ top:0, behavior: 'smooth' });};
+</script>
+
+</body>
+</html>

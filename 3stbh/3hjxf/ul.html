@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生态修复 - 生态保护</title>
+    <link rel="stylesheet" href="./css/1.1.1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-生态保护</h1>
+        </div>
+    </div>
+</header>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="./1stxfal/ul.html">矿山修复</a></li>
+            <li><a href="./2hmzl/ul.html">荒漠治理</a></li>
+            <li><a href="./3hdxfu/ul.html">河道修复</a></li>
+            <li><a href="./4cslh/ul.html">城市绿化</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>生态修复</h2>
+        <p>恢复生态系统 · 改善环境质量 · 重建生态功能</p>
+    </div>
+</div>
+
+<!-- 原有内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <!-- 矿山修复 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>矿山修复</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">废弃矿山生态修复技术</a></li>
+                    <li><a href="#">矿区土地复垦与植被恢复</a></li>
+                    <li><a href="#">尾矿库环境治理方案</a></li>
+                    <li><a href="#">绿色矿山建设标准规范</a></li>
+                    <li><a href="#">矿山地质灾害防治措施</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 荒漠治理 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>荒漠治理</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">三北防护林工程建设成效</a></li>
+                    <li><a href="#">沙化土地封禁保护措施</a></li>
+                    <li><a href="#">草方格固沙技术应用</a></li>
+                    <li><a href="#">防沙治沙产业化发展模式</a></li>
+                    <li><a href="#">沙漠公园建设与生态旅游</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 河道修复 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>河道修复</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">河流生态廊道构建技术</a></li>
+                    <li><a href="#">河岸带植被恢复工程</a></li>
+                    <li><a href="#">水体自净能力提升措施</a></li>
+                    <li><a href="#">生态护坡技术与应用</a></li>
+                    <li><a href="#">河湖连通工程建设规划</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 城市绿化 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>城市绿化</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">海绵城市建设技术规范</a></li>
+                    <li><a href="#">城市森林生态系统构建</a></li>
+                    <li><a href="#">立体绿化技术推广应用</a></li>
+                    <li><a href="#">口袋公园建设与布局优化</a></li>
+                    <li><a href="#">城市生物多样性保护策略</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- ========== 返回顶部按钮（半透明 + 固定右下角） ========== -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

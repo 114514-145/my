@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市生态 - 示范项目</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../ul.html">示范项目</a></li>
+            <li class="active"><a href="./ul.html">城市生态</a></li>
+            <li><a href="../2xc/ul.html">乡村生态</a></li>
+            <li><a href="../3qy/ul.html">区域生态</a></li>
+            <li><a href="../4sq/ul.html">社区生态</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>城市生态</h2>
+        <p>建设生态城市 · 打造绿色空间 · 提升人居环境</p>
+    </div>
+</div>
+
+<!-- 内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <div class="info-box">
+            <div class="info-title">
+                <h3>生态城市建设</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">国家生态园林城市创建标准</a></li>
+                    <li><a href="#">城市绿地系统规划实施</a></li>
+                    <li><a href="#">城市公园体系建设完善</a></li>
+                    <li><a href="#">立体绿化技术推广应用</a></li>
+                    <li><a href="#">城市生态廊道构建方案</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>海绵城市建设</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">雨水收集利用系统设计</a></li>
+                    <li><a href="#">透水铺装材料与技术</a></li>
+                    <li><a href="#">下沉式绿地建设规范</a></li>
+                    <li><a href="#">城市内涝防治措施</a></li>
+                    <li><a href="#">海绵城市试点经验分享</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>绿色建筑推广</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">绿色建筑评价标准体系</a></li>
+                    <li><a href="#">节能建筑材料应用案例</a></li>
+                    <li><a href="#">建筑能耗监测平台建设</a></li>
+                    <li><a href="#">既有建筑节能改造技术</a></li>
+                    <li><a href="#">零能耗建筑示范项目</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <h3>城市环境治理</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">城市噪声污染防治措施</a></li>
+                    <li><a href="#">光污染治理技术方案</a></li>
+                    <li><a href="#">城市热岛效应缓解策略</a></li>
+                    <li><a href="#">垃圾分类处理系统建设</a></li>
+                    <li><a href="#">城市环境质量监测系统</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- 返回顶部按钮 -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>

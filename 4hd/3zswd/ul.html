@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业责任 - 绿色行动</title>
+    <link rel="stylesheet" href="./css/1.1.1.css">
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="wrapper">
+        <span>聚焦生态环境 · 传播绿色理念</span>
+    </div>
+</div>
+
+<!-- 网站头部 -->
+<header class="header">
+    <div class="wrapper header-inner">
+        <div class="logo">
+            <h1>生态环境频道-绿色行动</h1>
+        </div>
+    </div>
+</header>
+
+<!-- 一级频道导航 -->
+<nav class="nav-main">
+    <div class="wrapper">
+        <ul class="nav-list">
+            <li><a href="../../index.html">首页</a></li>
+            <li><a href="./1hbtk/ul.html">环保投入</a></li>
+            <li><a href="./2zxwda/ul.html">专项行动</a></li>
+            <li><a href="./3jftz/ul.html">技术转型</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 4图自适应轮播 -->
+<div class="banner-slider">
+    <div class="slider-wrap">
+        <div class="slide-item" style="background-image:url(./img/1.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/2.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/3.jpg)"></div>
+        <div class="slide-item" style="background-image:url(./img/4.jpg)"></div>
+    </div>
+    <div class="banner-text">
+        <h2>企业责任</h2>
+        <p>履行社会责任 · 推动绿色发展 · 实现可持续经营</p>
+    </div>
+</div>
+
+<!-- 原有内容板块 -->
+<div class="container">
+    <div class="wrapper">
+        <!-- 环保投入 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>环保投入</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">企业环境社会责任报告编制</a></li>
+                    <li><a href="#">环保设施投资与运营管理</a></li>
+                    <li><a href="#">绿色金融支持政策与应用</a></li>
+                    <li><a href="#">环境信息披露制度要求</a></li>
+                    <li><a href="#">ESG评价体系与企业管理</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 专项行动 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>专项行动</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">绿色供应链管理体系建设</a></li>
+                    <li><a href="#">产品全生命周期环境管理</a></li>
+                    <li><a href="#">循环经济产业园发展模式</a></li>
+                    <li><a href="#">工业固废资源化利用技术</a></li>
+                    <li><a href="#">零排放工厂建设实践案例</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 技术转型 -->
+        <div class="info-box">
+            <div class="info-title">
+                <h3>技术转型</h3>
+            </div>
+            <div class="info-list">
+                <ul>
+                    <li><a href="#">清洁生产技术改造方案</a></li>
+                    <li><a href="#">节能减排技术创新应用</a></li>
+                    <li><a href="#">数字化环境监测系统建设</a></li>
+                    <li><a href="#">智能化工厂环保管理平台</a></li>
+                    <li><a href="#">工业互联网+环保解决方案</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="wrapper">
+        <p>廖利斌-2504020228</p>
+    </div>
+</footer>
+
+<!-- 轮播JS -->
+<script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const total = slides.length;
+
+    function slide() {
+        index++;
+        if (index >= total) index = 0;
+        let offset = -(index * 100 / total);
+        document.querySelector('.slider-wrap').style.transform = `translateX(${offset}%)`;
+    }
+    setInterval(slide, 3500);
+</script>
+
+<!-- ========== 返回顶部按钮（半透明 + 固定右下角） ========== -->
+<button id="backTop">↑</button>
+
+<style>
+#backTop {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(22, 92, 46, 0.55);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+}
+#backTop:hover {
+    background: rgba(13, 71, 34, 0.85);
+    transform: scale(1.1);
+}
+</style>
+
+<script>
+window.addEventListener('scroll', function(){
+    let btn = document.getElementById('backTop');
+    if(window.scrollY > 300){
+        btn.style.display = 'block';
+    }else{
+        btn.style.display = 'none';
+    }
+});
+
+document.getElementById('backTop').onclick = function(){
+    window.scrollTo({ top:0, behavior: 'smooth' });
+};
+</script>
+
+</body>
+</html>
