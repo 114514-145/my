@@ -58,18 +58,21 @@ ul {
 
 .clock {
     display: inline-block;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.15);
- padding: 0.5px 14px;
-    border-radius: 12px;
- 
-    backdrop-filter: blur(4px);
-    font-size: 14px;
-    letter-spacing: 2px;
-    min-width: 80px;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-weight: 700;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+    padding: 0px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: 15px;
+    letter-spacing: 3px;
+    min-width: 85px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 /* 主导航 */
 .nav-main {
     background: linear-gradient(90deg, #165c2e 0%, #1e733a 50%, #165c2e 100%);
