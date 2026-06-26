@@ -38,6 +38,11 @@
 .banner-slider {
     height: 480px;
     position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .slider-wrap {
     width: 400%;
@@ -105,10 +110,7 @@
 
 /* 轮播文字动画 */
 .banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     text-align: center;
     color: #fff;
     z-index: 5;
