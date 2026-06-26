@@ -40,9 +40,6 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .slider-wrap {
     width: 400%;
@@ -110,11 +107,15 @@
 
 /* 轮播文字动画 */
 .banner-text {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     color: #fff;
     z-index: 5;
     animation: fadeInDown 0.8s ease both;
+    width: auto;
 }
 .banner-text h2 {
     font-size: 46px;
